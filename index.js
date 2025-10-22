@@ -20,13 +20,13 @@ const pool = new Pool({
 app.get("/create-table", async (req, res) => {
   try {
     await pool.query(`
-      CREATE TABLE IF NOT EXISTS alunos (
+      CREATE TABLE IF NOT EXISTS aluno (
         id SERIAL PRIMARY KEY,
         nome TEXT,
         idade INT
       );
     `);
-    res.send("✅ Tabela 'alunos' criada com sucesso!");
+    res.send("✅ Tabela 'aluno' criada com sucesso!");
   } catch (err) {
     console.error("Erro ao criar tabela:", err);
     res.status(500).send("Erro ao criar tabela");
@@ -34,10 +34,10 @@ app.get("/create-table", async (req, res) => {
 });
 
 // ➕ CREATE
-app.post("/alunos", async (req, res) => {
+app.post("/aluno", async (req, res) => {
   const { nome, idade } = req.body;
   try {
-    await pool.query("INSERT INTO alunos (nome, idade) VALUES ($1, $2)", [nome, idade]);
+    await pool.query("INSERT INTO aluno (nome, idade) VALUES ($1, $2)", [nome, idade]);
     res.send("✅ Aluno cadastrado com sucesso!");
   } catch (err) {
     console.error("Erro ao cadastrar:", err);
@@ -46,9 +46,9 @@ app.post("/alunos", async (req, res) => {
 });
 
 // 📖 READ
-app.get("/alunos", async (req, res) => {
+app.get("/aluno", async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM alunos ORDER BY id ASC");
+    const result = await pool.query("SELECT * FROM aluno ORDER BY id ASC");
     res.json(result.rows);
   } catch (err) {
     console.error("Erro ao listar:", err);
@@ -57,11 +57,11 @@ app.get("/alunos", async (req, res) => {
 });
 
 // ✏️ UPDATE
-app.put("/alunos/:id", async (req, res) => {
+app.put("/aluno/:id", async (req, res) => {
   const { id } = req.params;
   const { nome, idade } = req.body;
   try {
-    await pool.query("UPDATE alunos SET nome=$1, idade=$2 WHERE id=$3", [nome, idade, id]);
+    await pool.query("UPDATE aluno SET nome=$1, idade=$2 WHERE id=$3", [nome, idade, id]);
     res.send("✏️ Aluno atualizado com sucesso!");
   } catch (err) {
     console.error("Erro ao atualizar:", err);
@@ -70,10 +70,10 @@ app.put("/alunos/:id", async (req, res) => {
 });
 
 // ❌ DELETE
-app.delete("/alunos/:id", async (req, res) => {
+app.delete("/aluno/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    await pool.query("DELETE FROM alunos WHEE id=$1", [id]);
+    await pool.query("DELETE FROM aluno WHERE id=$1", [id]);
     res.send("🗑️ Aluno excluído com sucesso!");
   } catch (err) {
     console.error("Erro ao excluir:", err);
