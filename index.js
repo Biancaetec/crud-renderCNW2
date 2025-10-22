@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname))); // 🔥 Serve o HTML
 
 // 🔗 Conexão com banco no Render
 const pool = new Pool({
-  connectionString: "postgresql://bezkoder_crud_user:kDyPGPdBwC46CrFTtSClAmr9csVvk8IB@dpg-d3s9o4buibrs73ep8vc0-a/bezkoder_crud",
+  connectionString: "postgresql://biancaetec_crud_rendercnw2_user:PQ6pEWxfA5BTTKcIv5dQivDnX3qFcq3B@dpg-d3sbl0buibrs73eqtkbg-a/biancaetec_crud_rendercnw2",
   ssl: { rejectUnauthorized: false }
 });
 
