@@ -18,7 +18,7 @@ const pool = new Pool({
 });
 
 // 🧱 Criar tabela (executar 1x)
-app.get("/create-alunos", async (req, res) => {
+app.get("/create-table", async (req, res) => {
   try {
     await pool.query(`
       CREATE TABLE IF NOT EXISTS alunos (
